@@ -3,7 +3,7 @@ LinkedInJobsClient — synchronous wrapper around the Apify
 ``apivault_labs/linkedin-jobs-scraper`` actor (v1.3).
 
 The actor handles all heavy work on Apify infrastructure:
-  - Thunderbit-powered scraping (no LinkedIn login needed)
+  - Hosted extraction without requiring a LinkedIn login
   - Two-pass enrichment with 15 derived layers
   - Optional deep-fetch of top companies for full description + salary
   - Per-company aggregation, recruiter scoring, outreach pitch generation
@@ -137,7 +137,6 @@ class LinkedInJobsClient:
         top_companies_n: int = 20,
         top_jobs_n: int = 20,
         # Plumbing
-        thunderbit_retries: int = 1,
         max_concurrency: int = 2,
         timeout_per_page: int = 120,
         actor_timeout_secs: int = 1800,
@@ -216,7 +215,6 @@ class LinkedInJobsClient:
             "writeSummary": bool(write_summary),
             "topCompaniesN": max(5, min(100, int(top_companies_n))),
             "topJobsN": max(5, min(100, int(top_jobs_n))),
-            "thunderbitRetries": max(0, min(3, int(thunderbit_retries))),
             "maxConcurrency": max(1, min(5, int(max_concurrency))),
             "timeout": max(30, min(300, int(timeout_per_page))),
         }
