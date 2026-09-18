@@ -343,7 +343,7 @@ pip install git+https://github.com/apivault-labs/linkedin-jobs-scraper-python@v0
 3. Either pass it explicitly or export `APIFY_API_TOKEN`:
 
 ```bash
-export APIFY_API_TOKEN="apify_api_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+export APIFY_API_TOKEN="YOUR_APIFY_TOKEN"
 ```
 
 ```python
@@ -411,7 +411,7 @@ your_code → LinkedInJobsClient → Apify API
                                     ↓
                   ┌─────────────────┴──────────────────┐
                   ↓                                    ↓
-       Thunderbit (LinkedIn data)         Optional deep-fetch top N
+       Hosted Actor collection                   Optional deep-fetch top N
                   ↓                                    ↓
         Two-pass enrichment with 15 derived layers
                   ↓
@@ -441,9 +441,9 @@ skills, recruiter score, outreach pitches, pay transparency law detection)
 that the official API doesn't expose, for $0.003/job pay-as-you-go.
 
 **Q: Will I get blocked / banned?**
-A: All scraping happens on Apify's infrastructure via Thunderbit's
-whitelisted pool. You don't connect to LinkedIn directly — your IP and your
-account are never touched.
+A: The SDK only calls the hosted Apify Actor and reads its Dataset.
+Collection runs remotely, so your local IP and account are not used by
+this client.
 
 **Q: Can I filter by skills like "must have Python AND AWS"?**
 A: Yes — `client.filter_by_skills(jobs, "Python", "AWS", match_all=True)`.
